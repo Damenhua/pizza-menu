@@ -47,24 +47,52 @@ const pizzaData = [
 
 function App() {
   return (
-    <div>
-      <Headers />
+    <div className="container">
+      <Header />
       <Menu />
       <Footer />
     </div>
   );
 }
 
-function Headers() {
-  return <h1>Fast React Pizza Co.</h1>;
+function Header() {
+  return (
+    <header className="header">
+      <h1>Fast React Pizza Co.</h1>
+    </header>
+  );
 }
 
 function Menu() {
-  return <h2>Our Menu</h2>;
+  return (
+    <main className="menu">
+      <h2>Our Menu</h2>
+      <div className="pizzas">
+        {pizzaData.map((pizza) => (
+          <Pizza key={pizza.name} pizzaData={pizza} />
+        ))}
+      </div>
+    </main>
+  );
 }
 
 function Footer() {
-  return <h2>Footer</h2>;
+  return (
+    <footer className="footer">
+      <h2>Footer</h2>
+    </footer>
+  );
+}
+
+function Pizza({ pizzaData }) {
+  return (
+    <div>
+      <img src={pizzaData.photoName} alt={pizzaData.name} />
+      <h3>{pizzaData.name}</h3>
+      <p>{pizzaData.ingredients}</p>
+      <span>{pizzaData.price}</span>
+    </div>
+  );
 }
 
 export default App;
